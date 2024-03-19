@@ -45,15 +45,15 @@ class SpringbootApplicationTests {
 
     @Test
     public void testDevApp() {
-        String baseUrl = "http://localhost:" + devApp.getMappedPort(8080);
-        ResponseEntity<String> response = restTemplate.getForEntity(baseUrl + "/", String.class);
-        assertEquals("Ожидаемый ответ от dev окружения", response.getBody());
+        String baseUrl = "http://localhost:" + devApp.getMappedPort(8080) + "/profile";
+        ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
+        assertEquals("Current profile is dev", response.getBody());
     }
 
     @Test
     public void testProdApp() {
-        String baseUrl = "http://localhost:" + prodApp.getMappedPort(8081);
-        ResponseEntity<String> response = restTemplate.getForEntity(baseUrl + "/", String.class);
-        assertEquals("Ожидаемый ответ от prod окружения", response.getBody());
+        String baseUrl = "http://localhost:" + prodApp.getMappedPort(8081) + "/profile";
+        ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
+        assertEquals("Current profile is production", response.getBody());
     }
 }
